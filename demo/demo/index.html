@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="stylesheet/oreo.css" type="text/css">
+		<link rel="stylesheet" href="stylesheet/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="stylesheet/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="stylesheet/bootstrap-responsive.css" type="text/css">
+		<link rel="stylesheet" href="stylesheet/bootstrap-responsive.min.css" type="text/css">
+	</head>
+		<title>
+		WebApp
+	</title>
+	<body>
+	<script>
+	   function redirect(){
+		var search = document.getElementById("searchString").value;
+		if(search == null || search == ""){
+			alert("Empty search field..");
+			return;
+		}
+		search.trim();
+		  //window.location="oreo.html?search="+encodeURI(search);
+		  document.location.href="oreo.html?search="+encodeURI(search);
+	  }
+	</script>
+	   <h2 align="center" class="text-center">WEB APP</h2>
+			<input type = "text" id = "searchString" placeholder="Enter search string..." required="required"/><br />
+			<input type="submit" value="search" id="submitButton" class="btn" onClick="redirect()"/>
+	</body>
+</html>

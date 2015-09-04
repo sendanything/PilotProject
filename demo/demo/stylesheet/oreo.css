@@ -1,0 +1,71 @@
+#searchString{
+	position:relative;
+	width:30%;
+	height:30px;
+	float:center;
+	margin-left:35%;
+}
+#submitButton{
+	position:relative;
+	margin-left:48%;
+	margin-top:5px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	box-shadow:none;
+	border:1px solid rgba(0,0,0,0,2);
+	font-weight:bold;
+	font-size:14px;
+	color:#fff;
+	background:rgb(79,230,247);
+	font-weight:bold;
+	text-shadow:none;
+	box-shadow:none;
+}
+.header{
+	position:absolute;
+	float:center;
+}
+.text-center{
+	margin-top:20%;
+}
+ .container1{
+	background-color:grey;
+	float:left;
+	overflow:auto;
+	height:350px;
+	width:20%;
+	margin-left:10%;
+	border-color:black;
+	border:3px;
+	margin-top:5%;
+ }
+   #map1 {
+		
+            width:64%;
+            height:40em;
+            float:right;
+            padding:10px;
+			margin-left:3%;
+			margin-top:5%;
+            }
+        #TextArea1
+        {
+            width: 789px;
+        }
+     .style1
+     {
+         width: 40%;
+         top: 181px;
+         left: 691px;
+     }
+     .style2
+     {
+         width: 902px;
+     }
+     #Select1
+     {
+         width: 223px;
+         height: 25px;
+     }
+

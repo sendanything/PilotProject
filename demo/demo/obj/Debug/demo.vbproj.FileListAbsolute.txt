@@ -1,0 +1,8 @@
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\bin\demo.dll
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\bin\demo.pdb
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\bin\demo.xml
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\obj\Debug\demo.Resources.resources
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\obj\Debug\demo.vbproj.GenerateResource.Cache
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\obj\Debug\demo.dll
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\obj\Debug\demo.xml
+C:\Users\hp\documents\visual studio 2010\Projects\demo\demo\obj\Debug\demo.pdb

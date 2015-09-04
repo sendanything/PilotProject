@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+ 
+<html ng-app="myapp">
+<head>
+    <title>SEARCH</title>
+		<link rel="stylesheet" href="./stylesheet/oreo.css" type="text/css">
+		<link rel="stylesheet" href="./stylesheet/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="./stylesheet/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="./stylesheet/bootstrap-responsive.css" type="text/css">
+		<link rel="stylesheet" href="./stylesheet/bootstrap-responsive.min.css" type="text/css">
+    
+</head>
+<body ng-controller="myProj" id="body">
+   <script>
+   </script>
+ 
+    <p {{food}} />
+    <br />
+    
+    <!--textarea id="TextArea1" name="S1" rows="10"></textarea><br /><hr /><br /><br /-->
+    
+    <!--input type="text" ng-model="putdemo" placeholder="Output here" /-->
+    <p id="para"></p>
+    
+    <br />
+     <div id= "map1"></div>
+    <script src="Scripts/angular.min.js"></script>
+     <script src="https://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+    <script>
+		var geoLatList = new Array();
+		var geoLangList = new Array();
+		var AddressArray = new Array();
+		  window.onload = function () {
+		 
+        var url = document.location.href,
+         params = url.split('?')[1].split('&'),
+         data = {}, tmp;
+         for (var i = 0, l = params.length; i < l; i++) {
+         tmp = params[i].split('=');
+         data[tmp[0]] = tmp[1];
+      }
+	    var input = data.search;
+		writeHeader(input);
+		startWorking(input);
+		
+   }
+   
+   function startWorking(input){
+	  Parse.initialize("UScatQxieE3MNKjYZlfH5WvkuRQxz1rmcheGHtNL", "kCH4Hj79DAM8nCX0GQ7W7Zki0F4HyjNBPzRP3vHO");
+            var TestObject = Parse.Object.extend("PARSE");
+            var testObject = new TestObject();
+            var query = new Parse.Query(TestObject);
+            var list = new Array();
+		
+            query.contains("FirstName", input);
+            query.find({
+                success: function (comments) {
+      //              alert("inside success");
+                    if (comments.length != 0) {
+                        for (var i = 0; i < comments.length; i++) {
+    //                        alert("in loop");
+                            var post = comments[i].get("FirstName").toString();
+                            list.push(post);
+						
+							var geoLat = comments[i].get("lat");
+							var geoLang = comments[i].get("lang");
+							
+							geoLatList.push(geoLat);
+							geoLangList.push(geoLang);
+							
+							var address = comments[i].get("Address").toString();
+							AddressArray.push(address);
+                            //var marker = new google.maps.Marker({ position: myLatLng, map: map, title: 'Hello World!' });
+                            //$scope.putdemo = post.toString();
+                            //                        $scope.list = post.toString();
+                            //  $scope.para.innerHTML = post.toString();   
+                            // alert("yeah");
+                        }
+                        
+        //                alert("outside the loop");
+                        displayList(list);
+						initialize(geoLatList,geoLangList,AddressArray);
+
+                    }
+                    else {
+                        alert(" List empty");
+                    }
+
+                    // comments now contains the comments for myPost
+                },
+                error: function () {
+                    alert("oops error");
+                }
+            });
+
+   }
+ 
+    var app=angular.module('myapp',[]);
+    app.controller('myProj', function ($scope) {
+        $scope.secFunc = function () {
+		alert("inside with search ");
+            Parse.initialize("UScatQxieE3MNKjYZlfH5WvkuRQxz1rmcheGHtNL", "kCH4Hj79DAM8nCX0GQ7W7Zki0F4HyjNBPzRP3vHO");
+            var TestObject = Parse.Object.extend("PARSE");
+            var testObject = new TestObject();
+            var query = new Parse.Query(TestObject);
+            var list = new Array();
+            query.contains("FirstName", $scope.food);
+            query.find({
+                success: function (comments) {
+      //              alert("inside success");
+                    if (comments.length != 0) {
+                        for (var i = 0; i < comments.length; i++) {
+    //                        alert("in loop");
+                            var post = comments[i].get("FirstName").toString();
+                            list.push(post);
+                            //var marker = new google.maps.Marker({ position: myLatLng, map: map, title: 'Hello World!' });
+                            //$scope.putdemo = post.toString();
+                            //                        $scope.list = post.toString();
+                            //  $scope.para.innerHTML = post.toString();   
+                            // alert("yeah");
+                        }
+                        
+        //                alert("outside the loop");
+                        displayList(list);
+                    }
+                    else {
+                        alert(" List empty");
+                    }
+
+                    // comments now contains the comments for myPost
+                },
+                error: function () {
+                    alert("oops error");
+                }
+            });
+        };
+
+        function displayList(list) {
+		  alert("displaying");
+            var container = document.createElement("div");
+			container.className = "container";
+            document.getElementsByTagName("body")[0].appendChild(container);
+
+            var listElement = document.createElement("ul");
+            container.appendChild(listElement);
+
+            var num = list.length;
+            for (i = 0; i < num; i++) {
+                var listItem = document.createElement("li");
+                listItem.innerHTML = list[i];
+                listElement.appendChild(listItem);
+            }
+        }
+
+    });
+	     function displayList(list) {
+            var container = document.createElement("div");
+			container.className = "container1";
+            document.getElementsByTagName("body")[0].appendChild(container);
+
+            var listElement = document.createElement("ul");
+            container.appendChild(listElement);
+			
+            var num = list.length;
+            for (i = 0; i < num; i++) {
+                var listItem = document.createElement("li");
+				listItem.innerHTML = list[i];
+                listElement.appendChild(listItem);
+            }
+        }
+		function writeHeader(input){
+			var header = document.createElement("div");
+			header.className="header";
+			header.innerHTML = "<h3>Search Result for "+input+"</h3>";
+			document.getElementsByTagName("body")[0].appendChild(header);
+			
+		}
+
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+    var myLatLng = { lat: 13, lng: 77 };
+    var mapCanvas;
+    var mapOptions;
+    var map;
+    var myLatLng1 = { lat: 14, lng: 77 };
+
+    function initialize() {
+        mapCanvas = document.getElementById('map1');
+        mapOptions = {
+            center: new google.maps.LatLng(13, 77),
+            zoom: 2,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(mapCanvas, mapOptions)
+		for(i=0;i<geoLatList.length;i++){
+		   var lati = geoLatList[i];
+		   var lang = geoLangList[i];
+		   myLatLng = {lat:lati, lng: lang};
+		   var address = AddressArray[i].toString();
+        var marker = new google.maps.Marker({ position: myLatLng, map: map, title: address });
+		}
+    }
+    	google.maps.event.addDomListener(window, 'load', initialize);
+
+ </script>
+ 
+</body>
+</html>
